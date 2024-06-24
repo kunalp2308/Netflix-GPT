@@ -6,6 +6,7 @@ import { useEffect } from "react";
 const useTopRatedMovies = () => {
   const dispatch = useDispatch();
   const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTopRatedMoviesMovies = async () => {
     const res = await fetch(
       "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
@@ -18,7 +19,7 @@ const useTopRatedMovies = () => {
 
   useEffect(() => {
     !topRatedMovies && getTopRatedMoviesMovies();
-  }, []);
+  }, [getTopRatedMoviesMovies, topRatedMovies]);
 };
 
 export default useTopRatedMovies;

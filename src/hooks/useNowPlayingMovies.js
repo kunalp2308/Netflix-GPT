@@ -8,6 +8,7 @@ const useNowPlayingMovies = () => {
   const nowPlayingMovies = useSelector(
     (store) => store.movies.nowPlayingMovies
   );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getNowPlayingMovies = async () => {
     const res = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?page=1",
@@ -19,7 +20,7 @@ const useNowPlayingMovies = () => {
 
   useEffect(() => {
     !nowPlayingMovies && getNowPlayingMovies();
-  }, []);
+  }, [getNowPlayingMovies, nowPlayingMovies]);
 };
 
 export default useNowPlayingMovies;

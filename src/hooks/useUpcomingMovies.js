@@ -6,6 +6,7 @@ import { useEffect } from "react";
 const useUpcomingMovies = () => {
   const dispatch = useDispatch();
   const upComingMovies = useSelector((store) => store.movies.upComingMovies);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getUpcomingMovies = async () => {
     const res = await fetch(
       "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
@@ -17,7 +18,7 @@ const useUpcomingMovies = () => {
 
   useEffect(() => {
     !upComingMovies && getUpcomingMovies();
-  }, []);
+  }, [getUpcomingMovies, upComingMovies]);
 };
 
 export default useUpcomingMovies;
